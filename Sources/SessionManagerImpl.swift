@@ -1,4 +1,4 @@
-import CoreUtils
+import Core
 
 final class SessionManagerImpl: SessionManager {
     @UserDefault("session", default: 0)
