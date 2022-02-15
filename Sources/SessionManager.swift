@@ -1,5 +1,6 @@
+import Core
 import Tweak
 
 public protocol SessionManager: TweakReceiver {
-    var session: Int { get }
+    var sessionValueSubject: ValueSubject<Int> { get }
 }

@@ -1,20 +1,33 @@
+import Combine
 import Core
 import Tweak
 
 final class SessionManagerImpl: SessionManager {
     init() {
+        subscribeToEvents()
         incrementSession()
     }
 
     @UserDefault("session", default: 0)
     private var storedSession: Int
+    private lazy var _sessionValueSubject = MutableValueSubject(storedSession)
+
+    private var cancellables = [AnyCancellable]()
+
+    private func subscribeToEvents() {
+        sessionValueSubject
+            .sink { [weak self] session in
+                self?.storedSession = session
+            }
+            .store(in: &cancellables)
+    }
 
     private func incrementSession() {
-        storedSession += 1
+        _sessionValueSubject.value += 1
     }
 
     private func decrementSession() {
-        storedSession = (storedSession - 1).clamped(0...)
+        _sessionValueSubject.value = (_sessionValueSubject.value - 1).clamped(0...)
     }
 
     // MARK: - TweakReceiver
@@ -34,7 +47,5 @@ final class SessionManagerImpl: SessionManager {
 
     // MARK: - SessionManager
 
-    var session: Int {
-        storedSession
-    }
+    var sessionValueSubject: ValueSubject<Int> { _sessionValueSubject }
 }
