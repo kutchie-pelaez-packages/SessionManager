@@ -1,4 +1,5 @@
 import Core
+import Tweak
 
 final class SessionManagerImpl: SessionManager {
     init() {
@@ -10,6 +11,25 @@ final class SessionManagerImpl: SessionManager {
 
     private func incrementSession() {
         storedSession += 1
+    }
+
+    private func decrementSession() {
+        storedSession = (storedSession - 1).clamped(0...)
+    }
+
+    // MARK: - TweakReceiver
+
+    func receive(_ tweak: Tweak) {
+        switch tweak.id {
+        case .Session.incrementSessionNumber:
+            incrementSession()
+
+        case .Session.decrementSessionNumber:
+            decrementSession()
+
+        default:
+            break
+        }
     }
 
     // MARK: - SessionManager
