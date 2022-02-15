@@ -1,5 +1,3 @@
-import Core
-
-public protocol SessionManager: Startable {
+public protocol SessionManager {
     var session: Int { get }
 }
