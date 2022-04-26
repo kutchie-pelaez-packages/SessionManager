@@ -9,6 +9,12 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "SessionManagerImpl",
+            targets: [
+                "SessionManagerImpl"
+            ]
+        ),
+        .library(
             name: "SessionManager",
             targets: [
                 "SessionManager"
@@ -21,12 +27,19 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "SessionManagerImpl",
+            dependencies: [
+                .product(name: "Core", package: "Core"),
+                .product(name: "Tweak", package: "Tweaks"),
+                .target(name: "SessionManager")
+            ]
+        ),
+        .target(
             name: "SessionManager",
             dependencies: [
                 .product(name: "Core", package: "Core"),
                 .product(name: "Tweak", package: "Tweaks")
-            ],
-            path: "Sources"
+            ]
         )
     ]
 )

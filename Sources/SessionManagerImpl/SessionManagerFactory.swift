@@ -1,3 +1,5 @@
+import SessionManager
+
 public struct SessionManagerFactory {
     public init() { }
 

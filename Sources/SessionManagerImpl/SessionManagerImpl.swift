@@ -1,5 +1,6 @@
 import Combine
 import Core
+import SessionManager
 import Tweak
 
 final class SessionManagerImpl: SessionManager {
