@@ -21,24 +21,24 @@ let package = Package(
             ]
         ),
         .library(
-            name: "SessionTweaks",
+            name: "SessionTweaking",
             targets: [
-                "SessionTweaks"
+                "SessionTweaking"
             ]
         )
     ],
     dependencies: [
         .package(name: "Core", url: "https://github.com/kutchie-pelaez-packages/Core.git", .branch("master")),
-        .package(name: "Tweaks", url: "https://github.com/kutchie-pelaez-packages/Tweaks.git", .branch("master"))
+        .package(name: "Tweaking", url: "https://github.com/kutchie-pelaez-packages/Tweaking.git", .branch("master"))
     ],
     targets: [
         .target(
             name: "SessionManagerImpl",
             dependencies: [
                 .product(name: "Core", package: "Core"),
-                .product(name: "Tweak", package: "Tweaks"),
+                .product(name: "Tweaking", package: "Tweaking"),
                 .target(name: "SessionManager"),
-                .target(name: "SessionTweaks")
+                .target(name: "SessionTweaking")
             ]
         ),
         .target(
@@ -48,9 +48,9 @@ let package = Package(
             ]
         ),
         .target(
-            name: "SessionTweaks",
+            name: "SessionTweaking",
             dependencies: [
-                .product(name: "Tweak", package: "Tweaks")
+                .product(name: "Tweaking", package: "Tweaking")
             ]
         )
     ]

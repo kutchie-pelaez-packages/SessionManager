@@ -1,8 +1,8 @@
 import Combine
 import Core
 import SessionManager
-import SessionTweaks
-import Tweak
+import SessionTweaking
+import Tweaking
 
 final class SessionManagerImpl: SessionManager, TweakReceiver {
     @UserDefault("session", default: 0)

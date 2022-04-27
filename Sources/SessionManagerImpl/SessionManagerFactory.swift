@@ -1,5 +1,5 @@
 import SessionManager
-import Tweak
+import Tweaking
 
 public struct SessionManagerFactory {
     public init() { }
